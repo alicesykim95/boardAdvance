@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://ec2-3-129-195-197.us-east-2.compute.amazonaws.com/KSY
+    username: ksy
+    password: ksy1010%%
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+  mvc:
+    view:
+      prefix: /templates/
+
+
+server:
+  port: 8085

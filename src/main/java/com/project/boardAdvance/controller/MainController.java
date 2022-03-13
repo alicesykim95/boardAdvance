@@ -34,8 +34,8 @@ public class MainController {
 
     @PostMapping("/join")
     public String joinUser(User user) throws UsernameNotFoundException {
-        String encPw = bCryptPasswordEncoder.encode(user.getUserPw());
-        user.setUserPw(encPw);
+        String encPw = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encPw);
         userService.joinUser(user);
 
         return "bJoin";
@@ -47,11 +47,10 @@ public class MainController {
         return "bLogin";
     }
 
-//    @PostMapping(value="/login")
-//    @ResponseBody
-//    public int login(String userId, Model model) throws UsernameNotFoundException {
-//
-//
-//}
+    @GetMapping("/boardPage")
+    public String boardPage() {
+        return "bBoard";
+    }
+
 
 }

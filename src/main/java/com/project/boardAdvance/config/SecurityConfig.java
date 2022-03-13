@@ -13,8 +13,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
-        http.authorizeRequests().anyRequest().permitAll();
+        http.csrf().disable().cors();
+        http.authorizeRequests()
+            .antMatchers("/boardPage").access("hasRole('USER')")
+            .anyRequest().permitAll()
+        .and()
+            .formLogin()
+            .loginPage("/loginPage").permitAll()
+            .loginProcessingUrl("/login")
+            .defaultSuccessUrl("/joinPage").and().httpBasic();
 
     }
 

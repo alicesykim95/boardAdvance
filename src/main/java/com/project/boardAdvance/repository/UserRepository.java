@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    User findByUsername(String username);
+
     // @Query("SELECT u FROM User u WHERE u.userId=:userId AND u.userPw=:userPw")
     // User loginUser(String userId, String userPw);
     // Collection<User> findByUser();

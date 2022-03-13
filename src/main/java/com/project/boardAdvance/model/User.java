@@ -17,10 +17,10 @@ public class User {
     private int id;
 
     @Column(length = 100, nullable = false, unique = true)
-    private String userId;
+    private String username;
 
     @Column(length = 100, nullable = false)
-    private String userPw;
+    private String password;
 
     @Column(length = 100, nullable = false)
     private String userEmail;
@@ -29,8 +29,6 @@ public class User {
     private Timestamp createTime;
 
     @Enumerated(EnumType.STRING)
-    private String role;
-
-
+    private UserRole role;
 
 }

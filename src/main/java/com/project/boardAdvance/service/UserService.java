@@ -1,6 +1,7 @@
 package com.project.boardAdvance.service;
 
 import com.project.boardAdvance.model.User;
+import com.project.boardAdvance.model.UserRole;
 import com.project.boardAdvance.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void joinUser(User user) throws UsernameNotFoundException {
-        user.setRole("USER");
+        user.setRole(UserRole.valueOf("USER"));
         userRepository.save(user);
     }
 

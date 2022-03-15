@@ -38,7 +38,7 @@ public class MainController {
         user.setPassword(encPw);
         userService.joinUser(user);
 
-        return "bJoin";
+        return "redirect:/home";
     }
 
     // 로그인

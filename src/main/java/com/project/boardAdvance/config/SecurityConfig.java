@@ -17,12 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/boardPage").access("hasRole('USER')")
             .anyRequest().permitAll()
-        .and()
+            .and()
             .formLogin()
             .loginPage("/loginPage").permitAll()
             .loginProcessingUrl("/login")
             .defaultSuccessUrl("/joinPage").and().httpBasic();
-
     }
 
 }

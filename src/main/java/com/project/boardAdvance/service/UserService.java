@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    // 회원가입
     public void joinUser(User user) throws UsernameNotFoundException {
         user.setRole(UserRole.valueOf("USER"));
         userRepository.save(user);

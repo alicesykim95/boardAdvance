@@ -47,10 +47,16 @@ public class MainController {
         return "bLogin";
     }
 
+    // Test
     @GetMapping("/boardPage")
-    public String boardPage() {
-        return "bBoard";
-    }
+    public String boardPage() { return "bBoard"; }
 
+    // 게시글 등록
+    @GetMapping("boardWrite")
+    public String boardWrite() { return "bWrite"; }
+
+    // 게시글 목록
+    @GetMapping("boardList")
+    public String boardList() { return "bList"; }
 
 }

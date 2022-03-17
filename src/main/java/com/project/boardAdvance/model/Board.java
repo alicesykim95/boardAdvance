@@ -16,18 +16,21 @@ public class Board {
     @GeneratedValue
     private int boardNum;
 
-    @Column(length=100, nullable=false)
+    @Column(name = "writer")
     private String writer;
 
-    @Column(length=100, nullable=false)
+    @Column(name = "title")
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable=false)
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "hitCnt")
+    private int hitCnt;
 
     @CreatedDate
     @Column(updatable=false)
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
 
 
 }

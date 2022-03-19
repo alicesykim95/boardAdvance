@@ -7,24 +7,22 @@
 </head>
 <body>
 <div class="board_join">
+    <p class="join_title">Create Account</p>
     <form action="/join" method="post">
-        <table class="join_table">
-            <tr>
-                <td>아이디</td>
-                <td><input type="text" name="username"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" name="password"></td>
-            </tr>
-            <tr>
-                <td>이메일</td>
-                <td><input type="email" name="userEmail"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="회원가입"></td>
-            </tr>
-        </table>
+        <div class="join_table">
+            <div class="join_section">
+                <input class="join_btn" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="join_section">
+                <input class="join_btn" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="join_section">
+                <input class="join_btn" type="email" name="userEmail" placeholder="Email">
+            </div>
+        </div>
+        <div class="bottm_join">
+            <input type="submit" class="join_bottom_btn" value="회원가입">
+        </div>
     </form>
 </div>
 </body>

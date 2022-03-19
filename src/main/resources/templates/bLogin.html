@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div>
+<div class="board_login">
+    <p class="login_title">Login</p>
     <form action="/login" method="post">
-        <table>
-            <tr>
-                <td>아이디</td>
-                <td><input type="text" name="username" placeholder="userId"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" name="password" placeholder="password"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="로그인"></td>
-            </tr>
-        </table>
+        <div class="login_table">
+            <div class="login_section">
+                <input class="login_btn" type="text" name="username" placeholder="userId">
+            </div>
+            <div class="login_section">
+                <input class="login_btn" type="password" name="password" placeholder="password">
+            </div>
+            <div class="bottom_login">
+                <input type="submit" class="login_bottom_btn" value="로그인">
+            </div>
+        </div>
     </form>
 </div>
 </body>

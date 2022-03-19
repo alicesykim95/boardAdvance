@@ -13,8 +13,12 @@ spring:
     show-sql: true
 
   mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
     view:
       prefix: /templates/
+
 
 
 server:

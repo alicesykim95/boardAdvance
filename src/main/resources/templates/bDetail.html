@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 화면</title>
+    <script src="https://code.jquery.com//jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div>
+        <h2>게시글 상세 화면</h2>
+            <table>
+                <tr>
+                    <td>글 번호</td>
+                    <td>{{board.boardNum}}</td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" id="title" value="{{board.title}}"></td>
+                </tr>
+                <tr>
+                    <td>작성자</td>
+                    <td>{{board.writer}}</td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><textarea id="content">{{board.content}}</textarea></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" id="boardNum" value="{{board.boardNum}}"></td>
+                    <td><input type="hidden" id="writer" value="{{board.writer}}"></td>
+                    <td><input type="button" value="목록" onclick="location.href='/boardList'"></td>
+                    <td><input type="button" value="수정" onclick="updateBoard()"></td>
+                    <td><input type="button" value="삭제" id="deleteBoard" onclick="deleteBoard()"></td>
+                </tr>
+            </table>
+    </div>
+</body>
+</html>
+<script>
+
+    function deleteBoard(){
+        loadAjax('/board', 'DELETE', {boardNum: document.getElementById("boardNum").value}, true)
+    }
+
+    function updateBoard() {
+
+        const detailList = {
+            title: document.getElementById("title").value,
+            writer: document.getElementById("writer").value,
+            content: document.getElementById("content").value,
+            boardNum: document.getElementById("boardNum").value
+        }
+
+        loadAjax('/board', 'PUT', detailList, true);
+    }
+
+    function loadAjax(link, method, dataList, alertOK){
+        $.ajax({
+            url: link,
+            type: method,
+            data: dataList,
+            success: function () {
+                if (alertOK){
+                    alert("성공하였습니다.")
+                    location.href="/boardList";
+                }
+            },
+            error: function () {
+                if (alertOK){
+                    alert("실패 하였습니다.")
+                }
+            }
+        });
+    }
+
+</script>

@@ -1,6 +1,8 @@
 package com.project.boardAdvance.controller;
 
+import com.project.boardAdvance.model.Board;
 import com.project.boardAdvance.model.User;
+import com.project.boardAdvance.service.BoardService;
 import com.project.boardAdvance.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,9 +20,12 @@ public class MainController {
 
     private final UserService userService;
 
+    private final BoardService boardService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    // 메인 홈
     @GetMapping("/home")
     public String homePage() {
         return "bHome";
@@ -47,7 +52,7 @@ public class MainController {
         return "bLogin";
     }
 
-    // Test
+    // 테스트
     @GetMapping("/boardPage")
     public String boardPage() { return "bBoard"; }
 
@@ -55,8 +60,22 @@ public class MainController {
     @GetMapping("boardWrite")
     public String boardWrite() { return "bWrite"; }
 
-    // 게시글 목록
-    @GetMapping("boardList")
-    public String boardList() { return "bList"; }
+    // 게시글 전체 목록
+    @RequestMapping(value = "/boardList", method = RequestMethod.GET)
+    public String boardAllList(Model model) {
+
+        List<Board> boardList = boardService.getBoardList();
+        model.addAttribute("list", boardList);
+
+        return "bList";
+    }
+
+    // 게시글 상세
+    @RequestMapping(value = "/board/{boardNum}", method = RequestMethod.GET)
+    public String getOneBoard(@PathVariable("boardNum") int boardNum, Model model) {
+        model.addAttribute("board", boardService.getOneBoard(boardNum));
+        return "bDetail";
+    }
+
 
 }

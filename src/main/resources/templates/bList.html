@@ -6,7 +6,35 @@
 </head>
 <body>
 <div>
-
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Writer</th>
+                <th>Date</th>
+                <th>Hit</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#list}}
+                    <tr>
+                        <td>{{boardNum}}</td>
+                        <td><a href="/{{boardNum}}">{{title}}</a></td>
+                        <td>{{writer}}</td>
+                        <td>{{createdDate}}</td>
+                        <td>{{hitCnt}}</td>
+                    </tr>
+                {{/list}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><a href="/boardWrite">글작성</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 </body>
 </html>

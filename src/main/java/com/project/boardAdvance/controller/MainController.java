@@ -57,12 +57,14 @@ public class MainController {
     public String boardPage() { return "bBoard"; }
 
     // 게시글 등록
-    @GetMapping("boardWrite")
+    @GetMapping("/boardWrite")
     public String boardWrite() { return "bWrite"; }
 
     // 게시글 전체 목록
-    @RequestMapping(value = "/boardList", method = RequestMethod.GET)
+    @GetMapping("/boardList")
     public String boardAllList(Model model) {
+
+
 
         List<Board> boardList = boardService.getBoardList();
         model.addAttribute("list", boardList);
@@ -71,8 +73,10 @@ public class MainController {
     }
 
     // 게시글 상세
-    @RequestMapping(value = "/board/{boardNum}", method = RequestMethod.GET)
+    @GetMapping("/{boardNum}")
     public String getOneBoard(@PathVariable("boardNum") int boardNum, Model model) {
+
+        boardService.updateHitCnt(boardNum);
         model.addAttribute("board", boardService.getOneBoard(boardNum));
         return "bDetail";
     }

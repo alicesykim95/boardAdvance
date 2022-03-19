@@ -26,7 +26,7 @@ public class MainRestController {
 
         boardService.saveBoard(board);
 
-        return "redirect:/";
+        return "bList";
     }
 
 //    // 게시글 상세 페이지

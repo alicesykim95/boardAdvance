@@ -4,36 +4,35 @@
     <meta charset="UTF-8">
     <title>게시글 상세 화면</title>
     <script src="https://code.jquery.com//jquery-3.4.1.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<div class="container">
+    <p class="title">게시글 상세 화면</p>
+    <table class="board_detail">
+        <tr class="detail_head head1">
+            <td class="head_title">글 번호</td>
+            <td><input type="text" id="boardNum" value="{{board.boardNum}}"></td>
+        </tr>
+        <tr class="detail_head head2">
+            <td class="head_title">제목</td>
+            <td><input type="text" id="title" value="{{board.title}}"></td>
+        </tr>
+        <tr class="detail_head head3">
+            <td class="head_title">작성자</td>
+            <td><input type="text" id="writer" value="{{board.writer}}"></td>
+        </tr>
+        <tr class="detail_head head4">
+            <td class="head_title">내용</td>
+            <td><textarea id="content">{{board.content}}</textarea></td>
+        </tr>
+    </table>
     <div>
-        <h2>게시글 상세 화면</h2>
-            <table>
-                <tr>
-                    <td>글 번호</td>
-                    <td>{{board.boardNum}}</td>
-                </tr>
-                <tr>
-                    <td>제목</td>
-                    <td><input type="text" id="title" value="{{board.title}}"></td>
-                </tr>
-                <tr>
-                    <td>작성자</td>
-                    <td>{{board.writer}}</td>
-                </tr>
-                <tr>
-                    <td>내용</td>
-                    <td><textarea id="content">{{board.content}}</textarea></td>
-                </tr>
-                <tr>
-                    <td><input type="hidden" id="boardNum" value="{{board.boardNum}}"></td>
-                    <td><input type="hidden" id="writer" value="{{board.writer}}"></td>
-                    <td><input type="button" value="목록" onclick="location.href='/boardList'"></td>
-                    <td><input type="button" value="수정" onclick="updateBoard()"></td>
-                    <td><input type="button" value="삭제" id="deleteBoard" onclick="deleteBoard()"></td>
-                </tr>
-            </table>
+        <input class="detail_btn" type="button" value="목록" onclick="location.href='/boardList'">
+        <input class="detail_btn" type="button" value="수정" onclick="updateBoard()">
+        <input class="detail_btn" type="button" value="삭제" id="deleteBoard" onclick="deleteBoard()">
     </div>
+</div>
 </body>
 </html>
 <script>

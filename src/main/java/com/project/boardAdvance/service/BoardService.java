@@ -34,5 +34,10 @@ public class BoardService {
         boardRepository.deleteById(boardNum);
     }
 
+    // 조회수 증가
+    public int updateHitCnt(int boardNum){
+        return boardRepository.updateHitCnt(boardNum);
+    }
+
 
 }

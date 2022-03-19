@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 작성</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div>
-    <h2>게시글 작성</h2>
+<div class="container">
+    <p class="title">게시글 작성</p>
     <form action="/board" method="post">
-        <table>
-            <tr>
-                <td>작성자</td>
-                <td><input type="text" name="writer"></td>
+        <table class="board_write">
+            <tr class="write_head">
+                <td class="write_title">작성자</td>
+                <td><input type="text" name="writer" id="writer"></td>
             </tr>
-            <tr>
-                <td>제목</td>
-                <td><input type="text" name="title"></td>
+            <tr class="write_head">
+                <td class="write_title">제목</td>
+                <td><input type="text" name="title" id="title"></td>
             </tr>
-            <tr>
-                <td>내용</td>
-                <td><input type="text" name="content"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="작성완료"></td>
+            <tr class="write_head">
+                <td class="write_title">내용</td>
+                <td><input type="text" name="content" id="content"></td>
             </tr>
         </table>
+        <input type="submit" class="write_btn" value="작성완료">
     </form>
 </div>
 </body>

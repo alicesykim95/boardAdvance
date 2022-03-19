@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 목록</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div>
-    <div>
-        <table>
+    <div class="container">
+        <p class="title">게시글 목록</p>
+        <table class="board_list">
+            <colgroup>
+                <col width="10%">
+                <col width="50%">
+                <col width="10%">
+                <col width="20%">
+                <col width="10%">
+            </colgroup>
             <thead>
-            <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Writer</th>
-                <th>Date</th>
-                <th>Hit</th>
+            <tr class="table_head">
+                <th scope="col" class="list_th">No</th>
+                <th scope="col" class="list_th">Title</th>
+                <th scope="col" class="list_th">Writer</th>
+                <th scope="col" class="list_th">Date</th>
+                <th scope="col" class="list_th">Hit</th>
             </tr>
             </thead>
             <tbody>
                 {{#list}}
-                    <tr>
-                        <td>{{boardNum}}</td>
-                        <td><a href="/{{boardNum}}">{{title}}</a></td>
+                    <tr class="table_body">
+                        <td class="list_td_no">{{boardNum}}</td>
+                        <td><a href="/{{boardNum}}" class="list_title">{{title}}</a></td>
                         <td>{{writer}}</td>
                         <td>{{createdDate}}</td>
                         <td>{{hitCnt}}</td>
@@ -30,10 +39,11 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td><a href="/boardWrite">글작성</a></td>
+                    <td></td>
                 </tr>
             </tfoot>
         </table>
+        <a href="/boardWrite"><button class="list_btn">글작성</button></a>
     </div>
 </div>
 </body>

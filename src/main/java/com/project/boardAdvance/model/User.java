@@ -1,6 +1,5 @@
 package com.project.boardAdvance.model;
 
-import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 

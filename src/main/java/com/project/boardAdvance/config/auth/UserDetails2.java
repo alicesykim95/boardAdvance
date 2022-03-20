@@ -10,12 +10,21 @@ import java.util.Collection;
 public class UserDetails2 implements UserDetails {
 
     private static final long serialVersionUID = 1L;
+
     private User user;
 
     public UserDetails2(User user) {
         this.user = user;
     }
 
+
+    // Collection - List = {LinkedList, Stack, Vector, ArrayList}, Set = [HashSet, LinkedHashSet, TreeSet}
+    // Map = {HashMap, Hashtable, TreeMap, LinkedHashMap}
+    // Array Collection
+    // List Collection
+    // Map - 키/ 값 (순서가 없다)
+    // Set - 중복이 없고, 순서도 없다. Collection
+    // Enum - 상수 집합
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -36,21 +45,21 @@ public class UserDetails2 implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

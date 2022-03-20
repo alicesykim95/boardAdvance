@@ -4,6 +4,7 @@ import com.project.boardAdvance.model.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,11 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     // 게시글 삭제
 //    @Query("DELETE FROM Board WHERE boardNum =:boardNum")
 //    void deleteById(Integer boardNum);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.title = :#{#board.title}, b.content = :#{#board.content} WHERE b.boardNum = :#{#board.boardNum}")
+    void updateBoard(@Param("board") Board board);
 
     // 조회수 증가
     @Transactional

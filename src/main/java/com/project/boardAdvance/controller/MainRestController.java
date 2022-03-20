@@ -22,24 +22,28 @@ public class MainRestController {
 
     // 게시글 등록
     @RequestMapping(value = "/board", method = RequestMethod.POST)
-    public String insertBoard(Board board){
+    public void insertBoard(Board board){
 
         boardService.saveBoard(board);
-
-        return "bList";
     }
 
-//    // 게시글 상세 페이지
-//    @RequestMapping(value = "/board/{boardNum}", method = RequestMethod.GET)
-//    public Board getBoardDetail(@PathVariable("boardNum") int BoardNum) {
-//        //return boardService.getOneBoard(boardNum);
-//    }
+    // 게시글 상세 페이지
+    @RequestMapping(value = "/board/{boardNum}", method = RequestMethod.GET)
+    public Board getBoardDetail(@PathVariable("boardNum") int boardNum) throws Exception {
+//        try{
+//            System.out.println("a");
+//        } catch(NullPointerException e) {
+//            return null;
+//        } catch(Exception e) {
+//            System.out.println("b");
+//        }
+        return boardService.getOneBoard(boardNum);
+    }
 
     // 게시글 수정
     @RequestMapping(value = "/board", method = RequestMethod.PUT)
-    public String updateBoard(Board board){
-        boardService.saveBoard(board);
-        return "redirect:/";
+    public void updateBoard(Board board){
+        boardService.updateBoard(board);
     }
 
     // 게시글 삭제

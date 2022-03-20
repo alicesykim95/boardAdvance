@@ -6,6 +6,7 @@ import com.project.boardAdvance.service.BoardService;
 import com.project.boardAdvance.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -54,18 +55,20 @@ public class MainController {
 
     // 테스트
     @GetMapping("/boardPage")
-    public String boardPage() { return "bBoard"; }
+    public String boardPage() {
+        return "bBoard";
+    }
 
     // 게시글 등록
     @GetMapping("/boardWrite")
-    public String boardWrite() { return "bWrite"; }
+    @Secured("USER")
+    public String boardWrite() {
+        return "bWrite";
+    }
 
     // 게시글 전체 목록
     @GetMapping("/boardList")
     public String boardAllList(Model model) {
-
-
-
         List<Board> boardList = boardService.getBoardList();
         model.addAttribute("list", boardList);
 
@@ -76,9 +79,15 @@ public class MainController {
     @GetMapping("/{boardNum}")
     public String getOneBoard(@PathVariable("boardNum") int boardNum, Model model) {
 
-        boardService.updateHitCnt(boardNum);
-        model.addAttribute("board", boardService.getOneBoard(boardNum));
-        return "bDetail";
+        try {
+            boardService.updateHitCnt(boardNum);
+            model.addAttribute("board", boardService.getOneBoard(boardNum));
+
+            return "bDetail";
+        } catch (Exception e) {
+            System.out.println("오");
+        }
+        return null;
     }
 
 

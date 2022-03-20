@@ -25,8 +25,14 @@ public class BoardService {
     }
 
     // 게시글 상세 조회
-    public Board getOneBoard(int boardNum){
+    public Board getOneBoard(int boardNum) throws Exception {
+
         return boardRepository.findById(boardNum).get();
+    }
+
+    // 게시글 수정
+    public void updateBoard(Board board){
+        boardRepository.updateBoard(board);
     }
 
     // 게시글 삭제
@@ -38,6 +44,5 @@ public class BoardService {
     public int updateHitCnt(int boardNum){
         return boardRepository.updateHitCnt(boardNum);
     }
-
 
 }

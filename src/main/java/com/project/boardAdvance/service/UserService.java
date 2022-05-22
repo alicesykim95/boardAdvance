@@ -16,7 +16,7 @@ public class UserService {
 
     // 회원가입
     public void joinUser(User user) throws UsernameNotFoundException {
-        user.setRole(UserRole.valueOf("USER"));
+        user.setRole(UserRole.valueOf("ROLE_USER"));
         userRepository.save(user);
     }
 

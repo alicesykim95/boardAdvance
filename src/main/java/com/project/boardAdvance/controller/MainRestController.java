@@ -3,8 +3,10 @@ package com.project.boardAdvance.controller;
 import com.project.boardAdvance.model.Board;
 import com.project.boardAdvance.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,20 +25,12 @@ public class MainRestController {
     // 게시글 등록
     @RequestMapping(value = "/board", method = RequestMethod.POST)
     public void insertBoard(Board board){
-
         boardService.saveBoard(board);
     }
 
     // 게시글 상세 페이지
     @RequestMapping(value = "/board/{boardNum}", method = RequestMethod.GET)
     public Board getBoardDetail(@PathVariable("boardNum") int boardNum) throws Exception {
-//        try{
-//            System.out.println("a");
-//        } catch(NullPointerException e) {
-//            return null;
-//        } catch(Exception e) {
-//            System.out.println("b");
-//        }
         return boardService.getOneBoard(boardNum);
     }
 

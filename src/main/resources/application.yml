@@ -4,6 +4,16 @@ spring:
     username: ksy
     password: ksy1010%%
     driver-class-name: org.mariadb.jdbc.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 157032577677-bm5dmdrgbtnk59f7qeccgc6hcat8g3pm.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
 
   jpa:
     hibernate:
@@ -18,6 +28,7 @@ spring:
         enabled: true
     view:
       prefix: /templates/
+
 
 
 

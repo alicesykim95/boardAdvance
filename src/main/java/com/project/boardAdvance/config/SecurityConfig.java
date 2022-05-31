@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/boardPage").access("hasRole('ROLE_USER')")
             .antMatchers("/boardList").access("hasRole('ROLE_USER')")
+            .antMatchers("/").access("hasRole('ROLE_USER')")
             .anyRequest().permitAll()
             .and()
                 .formLogin()
@@ -40,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()// 로그인 성공 후 사용자 정보를 가져올때 설정을 담당
                 .userService (principalOauth2UserService) // 성공 후 후속 조치를 해당 서비스단으로 넘김
             ;
-
     }
 
 }

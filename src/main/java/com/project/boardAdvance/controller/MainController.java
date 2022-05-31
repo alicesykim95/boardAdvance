@@ -27,7 +27,7 @@ public class MainController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // 메인 홈
-    @GetMapping("/home")
+    @GetMapping(value = {"/home" , "/"})
     public String homePage() {
         return "bHome";
     }

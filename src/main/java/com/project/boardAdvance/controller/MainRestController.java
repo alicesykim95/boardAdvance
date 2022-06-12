@@ -3,6 +3,8 @@ package com.project.boardAdvance.controller;
 import com.project.boardAdvance.model.Board;
 import com.project.boardAdvance.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +20,8 @@ public class MainRestController {
 
     // 게시글 전체 리스트
     @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public List<Board> getListBoard() {
-        return boardService.getBoardList();
+    public ResponseEntity<List<Board>> getListBoard() {
+        return ResponseEntity.status(HttpStatus.OK).body(boardService.getBoardList());
     }
 
     // 게시글 등록

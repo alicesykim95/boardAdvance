@@ -2,11 +2,11 @@ package com.project.boardAdvance.config.auth;
 
 import java.util.Map;
 
-public class GoogleUserInfo implements OAuthUserInfo {
+public class NaverUserInfo implements OAuthUserInfo {
 
     private Map<String, Object> attributes;
 
-    public GoogleUserInfo(Map<String, Object> attributes) {
+    public NaverUserInfo(Map<String, Object> attributes) {
         this.attributes = attributes;
     }
 
@@ -25,9 +25,9 @@ public class GoogleUserInfo implements OAuthUserInfo {
         return attributes.get("email").toString();
     }
 
-
+    @Override
     public String getProvider() {
-        return "google";
+        return "naver";
     }
 
 }

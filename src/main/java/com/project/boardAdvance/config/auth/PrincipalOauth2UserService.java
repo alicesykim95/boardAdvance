@@ -29,23 +29,37 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
     private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
 
-//        OAuth2UserInfo
-        GoogleUserInfo googleUserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+        OAuthUserInfo oAuthUserInfo = null;
 
-        Optional<User> userOptional = userRepository.findByProviderAndProviderId(googleUserInfo.getProvider(), googleUserInfo.getProviderId());
+        switch (userRequest.getClientRegistration().getRegistrationId()) {
+            case "google":
+                oAuthUserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+                break;
+
+            case "naver":
+                oAuthUserInfo = new NaverUserInfo(oAuth2User.getAttributes());
+                break;
+
+            default:
+                System.out.println("구글과 네이버만 지원합니다.");
+
+        }
+
+
+        Optional<User> userOptional = userRepository.findByProviderAndProviderId(oAuthUserInfo.getProvider(), oAuthUserInfo.getProviderId());
         User user;
 
         if (userOptional.isPresent()){
             user = userOptional.get();
-            user.setUserEmail(googleUserInfo.getEmail());
+            user.setUserEmail(oAuthUserInfo.getEmail());
         } else {
             user = User.builder()
-                    .username(googleUserInfo.getProvider() + "_" + googleUserInfo.getProviderId())
-                    .userEmail(googleUserInfo.getEmail())
+                    .username(oAuthUserInfo.getProvider() + "_" + oAuthUserInfo.getProviderId())
+                    .userEmail(oAuthUserInfo.getEmail())
                     .password(bCryptPasswordEncoder.encode("1234"))
                     .role(UserRole.valueOf("ROLE_USER"))
-                    .provider(googleUserInfo.getProvider())
-                    .providerId(googleUserInfo.getProviderId())
+                    .provider(oAuthUserInfo.getProvider())
+                    .providerId(oAuthUserInfo.getProviderId())
                     .build();
 
             userRepository.save(user);
